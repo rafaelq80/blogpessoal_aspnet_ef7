@@ -84,7 +84,7 @@ namespace blogpessoal
                     Description = "Projeto Blog Pessoal - ASP.NET Core 7 - Entity Framework",
                     Contact = new OpenApiContact
                     {
-                        Name = "Rafael Queiróz",
+                        Name = "Rafael Queiroz",
                         Email = "rafaelproinfo@gmail.com",
                         Url = new Uri("https://github.com/rafaelq80")
                     },
@@ -145,6 +145,17 @@ namespace blogpessoal
                 };
             });
 
+            // Configuração do CORS
+            builder.Services.AddCors(options => {
+                options.AddPolicy(name: "MyPolicy",
+                    policy =>
+                    {
+                        policy.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                    });
+            });
+
             var app = builder.Build();
 
             // Criar o Banco de dados e as tabelas Automaticamente
@@ -173,11 +184,9 @@ namespace blogpessoal
 
             }
 
-            // Configuração do CORS
-            app.UseCors(rota => rota
-               .AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader());
+            app.UseCors("MyPolicy");
+
+            app.UseHttpsRedirection();
 
             app.UseAuthentication();
 

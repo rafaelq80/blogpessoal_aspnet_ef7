@@ -25,7 +25,7 @@ namespace blogpessoal.Data
             _ = modelBuilder.Entity<Postagem>()
             .HasOne(_ => _.Usuario)
             .WithMany(u => u.Postagem)
-            .HasForeignKey("UsuarioId")
+            .HasForeignKey("UserId")
             .OnDelete(DeleteBehavior.Cascade);
         }
 

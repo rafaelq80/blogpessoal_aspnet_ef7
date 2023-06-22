@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace blogpessoal.Models
 {
-    public class Postagem
+    public class Postagem: Auditable
     {
 
         [Key]
@@ -14,16 +14,11 @@ namespace blogpessoal.Models
 
         public string Texto { get; set; } = string.Empty;
 
-        public DateTime Data { get; set; }
-
         public virtual Tema? Tema { get; set; }
 
-        public virtual User? User { get; set; }
+        public virtual User? Usuario { get; set; }
 
-        public Postagem()
-        {
-            Data = DateTime.Now;
-        }
+        
 
     }
 }

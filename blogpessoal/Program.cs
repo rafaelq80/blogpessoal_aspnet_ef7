@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Swagger;
 using System.Text;
 
 
@@ -142,8 +141,6 @@ namespace blogpessoal
                     ValidateAudience = false,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                   // ValidIssuer = builder.Configuration["JWT:Issuer"],
-                   // ValidAudience = builder.Configuration["JWT:Audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(Key)
                 };
             });
@@ -190,7 +187,9 @@ namespace blogpessoal
 
             app.Run();
         }
+
     }
 }
 
+// Configuração para executar os Testes no xUnit
 public partial class Program { }

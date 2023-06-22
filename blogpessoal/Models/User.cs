@@ -20,7 +20,7 @@ namespace blogpessoal.Models
 
         public string? Foto { get; set; } = string.Empty;
 
-        [JsonIgnore, InverseProperty("User")]
+        [JsonIgnore, InverseProperty("Usuario")]
         public virtual ICollection<Postagem>? Postagem { get; set; }
     }
 }

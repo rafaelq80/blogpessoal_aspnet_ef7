@@ -29,6 +29,8 @@ namespace blogpessoal.Repositories.Implements
                     .Include(u => u.Postagem)
                     .FirstAsync(i => i.Id == id);
 
+                User.Senha = "";
+
                 return User;
             }
             catch
@@ -61,6 +63,9 @@ namespace blogpessoal.Repositories.Implements
             if (BuscarUsuario is not null)
                 return null;
 
+            if (usuario.Foto is null || usuario.Foto == "")
+                usuario.Foto = "https://i.imgur.com/I8MfmC8.png";
+
             usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha, workFactor: 10);
 
             _context.Users.Add(usuario);
@@ -69,21 +74,24 @@ namespace blogpessoal.Repositories.Implements
             return usuario;
         }
 
-        public async Task<User?> Update(User user)
+        public async Task<User?> Update(User usuario)
         {
 
-            var UserUpdate = await _context.Users.FindAsync(user.Id);
+            var UsuarioUpdate = await _context.Users.FindAsync(usuario.Id);
 
-            if (UserUpdate is null)
+            if (UsuarioUpdate is null)
                 return null;
 
-            user.Senha = BCrypt.Net.BCrypt.HashPassword(user.Senha, workFactor: 10);
+            if (usuario.Foto is null || usuario.Foto == "")
+                usuario.Foto = "https://i.imgur.com/I8MfmC8.png";
 
-            _context.Entry(UserUpdate).State = EntityState.Detached;
-            _context.Entry(user).State = EntityState.Modified;
+            usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha, workFactor: 10);
+
+            _context.Entry(UsuarioUpdate).State = EntityState.Detached;
+            _context.Entry(usuario).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
-            return user;
+            return usuario;
         }
 
     }

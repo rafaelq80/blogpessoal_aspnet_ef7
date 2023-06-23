@@ -83,3 +83,4 @@ Usuario --> Postagem
     - MVC Testing
 - Deploy
     - NPGSQL - Postgres (Deploy no Render)
+    - Docker

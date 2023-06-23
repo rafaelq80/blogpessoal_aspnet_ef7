@@ -40,12 +40,12 @@ namespace blogpessoal.Repositories.Implements
 
         public async Task<IEnumerable<Tema>> GetByDescricao(string descricao)
         {
-            var TemaReturn = await _context.Temas
+            var Tema = await _context.Temas
                 .Include(t => t.Postagem)
                 .Where(t => t.Descricao.ToLower().Contains(descricao.ToLower()))
                 .ToListAsync();
 
-            return TemaReturn;
+            return Tema;
         }
 
         public async Task<Tema> Create(Tema tema)

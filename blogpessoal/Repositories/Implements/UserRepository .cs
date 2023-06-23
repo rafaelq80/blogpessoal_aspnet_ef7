@@ -25,13 +25,13 @@ namespace blogpessoal.Repositories.Implements
         {
             try
             {
-                var User = await _context.Users
+                var Usuario = await _context.Users
                     .Include(u => u.Postagem)
                     .FirstAsync(i => i.Id == id);
 
-                User.Senha = "";
+                Usuario.Senha = "";
 
-                return User;
+                return Usuario;
             }
             catch
             {
@@ -44,11 +44,11 @@ namespace blogpessoal.Repositories.Implements
         {
             try
             {
-                var Usuario = await _context.Users
+                var BuscaUsuario = await _context.Users
                     .Where(u => u.Usuario == usuario)
                     .FirstOrDefaultAsync();
 
-                return Usuario;
+                return BuscaUsuario;
             }
             catch
             {
@@ -58,9 +58,9 @@ namespace blogpessoal.Repositories.Implements
 
         public async Task<User?> Create(User usuario)
         {
-            var BuscarUsuario = await GetByUsuario(usuario.Usuario);
+            var BuscaUsuario = await GetByUsuario(usuario.Usuario);
 
-            if (BuscarUsuario is not null)
+            if (BuscaUsuario is not null)
                 return null;
 
             if (usuario.Foto is null || usuario.Foto == "")

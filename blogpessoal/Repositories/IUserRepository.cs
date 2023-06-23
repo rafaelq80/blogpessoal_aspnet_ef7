@@ -10,9 +10,9 @@ namespace blogpessoal.Repositories
 
         Task<User?> GetByUsuario(string usuario);
 
-        Task<User?> Create(User user);
+        Task<User?> Create(User usuario);
 
-        Task<User?> Update(User user);
+        Task<User?> Update(User usuario);
 
     }
 }

@@ -41,13 +41,13 @@ namespace blogpessoal.Repositories.Implements
 
         public async Task<IEnumerable<Postagem>> GetByTitulo(string titulo)
         {
-            var PostagemReturn = await _context.Postagens
+            var Postagem = await _context.Postagens
                 .Include(p => p.Tema)
                 .Include(u => u.Usuario)
                 .Where(p => p.Titulo.ToLower().Contains(titulo.ToLower()))
                 .ToListAsync();
 
-            return PostagemReturn;
+            return Postagem;
         }
 
         public async Task<Postagem?> Create(Postagem postagem)
@@ -66,6 +66,7 @@ namespace blogpessoal.Repositories.Implements
 
             await _context.Postagens.AddAsync(postagem);
             await _context.SaveChangesAsync();
+
             return postagem;
 
         }

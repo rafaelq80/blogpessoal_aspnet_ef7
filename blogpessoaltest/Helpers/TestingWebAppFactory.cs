@@ -1,12 +1,9 @@
-﻿using blogpessoal.Data;
-using blogpessoal.Models;
+﻿using blogpessoal;
+using blogpessoal.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Diagnostics.Metrics;
-using System.Linq;
 
 namespace blogpessoaltest.Helpers
 {

@@ -61,7 +61,7 @@ class UsuarioLogin{
   - token : String
 }
 Tema --> Postagem
-Usuario --> Postagem
+User --> Postagem
 ```
 
 <br /><br />
